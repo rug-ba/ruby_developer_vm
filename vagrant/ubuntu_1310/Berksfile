@@ -1,0 +1,10 @@
+site :opscode
+
+cookbook 'apt'
+cookbook 'build-essential'
+cookbook 'git'
+cookbook 'dev_box', path: './cookbooks/dev_box'
+cookbook 'ruby_build'
+cookbook 'rbenv', git: 'git://github.com/fnichol/chef-rbenv.git'
+cookbook 'nodejs'
+cookbook 'mysql'

@@ -1,0 +1,95 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# the following plugins have to be installed manually
+# run this on the command line
+#
+# berkshelf 1.3.7
+# vagrant plugin install vagrant-berkshelf
+#
+#run berks on the commandline to generate Berksfile.lock
+# berks
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu1310_new"
+
+  # config.vm.box_url = "http://domain.com/path/to/above.box"
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  # config.vm.network :forwarded_port, guest: 80, host: 8080
+
+  config.vm.network :public_network
+
+  config.vm.synced_folder "./data", "/vagrant_data", :create => true
+
+  config.berkshelf.enabled = true
+
+  config.vm.provider :virtualbox do |vb|
+    vb.gui = true
+
+    vb.customize ["modifyvm", :id, "--vram", 256]
+    vb.customize ["modifyvm", :id, "--accelerate3d", 'on']
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
+  end
+
+  # update package cache and upgrade to most recent versions
+  config.vm.provision :shell, :inline => "sudo aptitude update && sudo aptitude install unattended-upgrades && sudo unattended-upgrade"
+
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = [ 'cookbooks' ]
+    chef.run_list = [
+      "dev_box::basic_packages",
+      "git::source",
+      "dev_box::desktop",
+      "ruby_build",
+      "rbenv::user",
+      "rbenv::configuration",
+      "nodejs",
+      "mysql::client",
+      "mysql::server",
+      "dev_box::yadr",
+      "dev_box::tidy_up"
+    ]
+    chef.json = {
+      "git" => {
+        "version" => "1.8.5.3"
+      },
+      "nodejs" => {
+        "install_method" => "package"
+      },
+      "rbenv" => {
+        "user_installs" => [
+          { "user" => "vagrant",
+            "rubies" => [ "2.0.0-p353" ],
+            "global" => "2.0.0-p353",
+            "gems" => {
+              "2.0.0-p353" => [
+                { "name" => "bundler" },
+                { "name" => "rails" },
+                { "name" => "pry" },
+                { "name" => "pry-byebug" },
+                { "name" => "pry-doc" },
+                { "name" => "pry-docmore" },
+                { "name" => "bond" },
+                { "name" => "pry-highlight" },
+                { "name" => "pry-editline" },
+                { "name" => "pry-git" },
+                { "name" => "pry-theme" },
+                { "name" => "awesome_print" }
+              ],
+            }
+          }
+        ]
+      },
+      "mysql" => {
+        "server_root_password" => "vagrant",
+        "server_repl_password" => "vagrant",
+        "server_debian_password" => "vagrant"
+      }
+    }
+  end
+end

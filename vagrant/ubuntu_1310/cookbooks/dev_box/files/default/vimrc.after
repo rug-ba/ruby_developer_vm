@@ -1,0 +1,83 @@
+" let easytag distribute it tags over several files
+let g:easytags_by_filetype = '~/.tags'
+
+" % to bounce from do to end etc.
+runtime! macros/matchit.vim
+
+"remap escape key
+imap jj <Esc>
+
+" mappings for fugitive
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+
+" format the entire file
+nmap <leader>fef ggVG=
+
+map <Leader>n :NERDTreeToggle<CR>
+
+if has("gui_macvim") && has("gui_running")
+
+  " Bubble single lines
+  nmap <D-Up> [e
+  nmap <D-Down> ]e
+  nmap <D-k> [e
+  nmap <D-j> ]e
+
+  " Bubble multiple lines
+  vmap <D-Up> [egv
+  vmap <D-Down> ]egv
+  vmap <D-k> [egv
+  vmap <D-j> ]egv
+
+else
+  " Bubble single lines
+  nmap <C-Up> [e
+  nmap <C-Down> ]e
+  nmap <C-k> [e
+  nmap <C-j> ]e
+
+  " Bubble multiple lines
+  vmap <C-Up> [egv
+  vmap <C-Down> ]egv
+  vmap <C-k> [egv
+  vmap <C-j> ]egv
+
+endif
+
+" Swap Windows easily
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+    "Mark destination
+    let curNum = winnr()
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    "Switch to source and shuffle dest->source
+    let markedBuf = bufnr( "%" )
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' curBuf
+    "Switch to dest and shuffle source->dest
+    exe curNum . "wincmd w"
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' markedBuf
+endfunction
+
+nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
+nmap <silent> <leader>pw :call DoWindowSwap()<CR>
+
+let g:NumberToggleTrigger="<F2>"
+
+" Make those debugger statements painfully obvious
+au BufEnter *.rb syn match error contained "\<binding.pry\>"
+au BufEnter *.rb syn match error contained "\<debugger\>"
+
+" Easy expansion of the active file directory
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+

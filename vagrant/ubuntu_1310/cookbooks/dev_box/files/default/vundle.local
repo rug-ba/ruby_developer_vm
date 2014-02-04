@@ -1,0 +1,8 @@
+Bundle "https://github.com/mattn/emmet-vim.git"
+Bundle "https://github.com/tpope/vim-eunuch.git"
+Bundle "https://github.com/ap/vim-css-color.git"
+Bundle "https://github.com/rizzatti/funcoo.vim.git"
+Bundle "https://github.com/hail2u/vim-css3-syntax.git"
+Bundle "https://github.com/itspriddle/vim-marked.git"
+Bundle "git://github.com/jeffkreeftmeijer/vim-numbertoggle.git"
+Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
