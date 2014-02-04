@@ -15,6 +15,8 @@ Afterwards use the Vagrantfile with the base box to install the rest of the VM.
 
 `$ bundle`
 
+`$ berks`
+
 `$ vagrant up`
 
 Tested with virtual box 4.3.6 and Ubuntu 13.10.
