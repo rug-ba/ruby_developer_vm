@@ -13,7 +13,7 @@ git "/home/#{user}/.yadr" do
   user user
   group user
   action :sync
-  not_if { ::File.exists?("/home/#{user}/.yadr")
+  not_if { ::File.exists?("/home/#{user}/.yadr") }
 end
 
 cookbook_file "create-vimrc-after" do
