@@ -47,7 +47,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       "dev_box::desktop",
       "ruby_build",
       "rbenv::user",
-      "rbenv::configuration",
+      "dev_box::rbenv_configuration",
       "nodejs",
       "mysql::client",
       "mysql::server",
