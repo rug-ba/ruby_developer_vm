@@ -7,6 +7,3 @@ ubuntu1310.box
 # ignore all .vagrant files
 .vagrant
 
-# ignore Berksfile files
-*.lock
-
