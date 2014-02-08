@@ -28,7 +28,7 @@ $ vagrant box add ubuntu1310_new ./ubuntu1310.box
 
 Building the Ubuntu box with vagrant
 ------------------------------------
-(DR: successfuly tested with vagrant v1.4.1 on Mac OSX 10.9.1)
+(DR: successfuly tested with vagrant v1.4.3 on Mac OSX 10.9.1)
 
 Afterwards use the Vagrantfile with the base box to install the rest of the VM.
 
