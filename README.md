@@ -11,7 +11,6 @@ The MySQL-Root user is "root". The password is "vagrant".
 
 Building the basebox with packer
 --------------------------------
-(DR: successfuly tested with packer v0.5.1 on Mac OSX 10.9.1)
 
 You can build the base box with the provided packer template.
 ```bash
@@ -28,7 +27,6 @@ $ vagrant box add ubuntu1310_new ./ubuntu1310.box
 
 Building the Ubuntu box with vagrant
 ------------------------------------
-(DR: successfuly tested with vagrant v1.4.3 on Mac OSX 10.9.1)
 
 Afterwards use the Vagrantfile with the base box to install the rest of the VM.
 
@@ -40,4 +38,4 @@ $ berks
 $ vagrant up
 ```
 
-Tested with virtual box 4.3.6 and Ubuntu 13.10.
+Tested with packer 0.5.1, vagrant 1.4.3, virtual box 4.3.6 on Mac OSX 10.9.1. Created an Ubuntu 13.10 box.
