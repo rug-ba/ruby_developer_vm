@@ -32,10 +32,10 @@ Afterwards use the Vagrantfile with the base box to install the rest of the VM.
 
 ```bash
 $ cd vagrant/ubuntu_1310/
-$ vagrant plugin install vagrant-berkshelf
+$ vagrant plugin install vagrant-berkshelf --plugin-version '>= 2.0.1'
 $ bundle
 $ berks
 $ vagrant up
 ```
 
-Tested with packer 0.5.1, vagrant 1.4.3, virtual box 4.3.6 on Mac OSX 10.9.1. Created an Ubuntu 13.10 box.
+Tested with packer 0.6.0, vagrant 1.6.3, virtual box 4.3.12 on Mac OSX 10.9.3. Created an Ubuntu 13.10 box.
