@@ -4,3 +4,4 @@
 # all Unix / CYGWIN shell scripts must be unix
 *.sh text eol=lf
 Vagrantfile text eol=lf
+preseed.cfg text eol=lf
