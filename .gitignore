@@ -1,0 +1,9 @@
+# ignore the packer_cache directory
+packer_cache
+
+# ignore the .box build by packer
+ubuntu1310.box
+
+# ignore all .vagrant files
+.vagrant
+

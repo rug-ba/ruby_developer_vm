@@ -8,7 +8,7 @@ GEM
     akami (1.2.1)
       gyoku (>= 0.4.0)
       nokogiri
-    berkshelf (2.0.13)
+    berkshelf (2.0.14)
       activesupport (~> 3.2.0)
       addressable (~> 2.3.4)
       buff-shell_out (~> 0.1)
@@ -66,7 +66,7 @@ GEM
     mixlib-log (1.6.0)
     multi_json (1.8.4)
     multipart-post (1.2.0)
-    net-http-persistent (2.9.1)
+    net-http-persistent (2.9.3)
     net-ssh (2.8.0)
     nio4r (1.0.0)
     nokogiri (1.6.1)
